@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "7479767e-9ad3-4b19-9c39-6fcb15ccbd67",
+		"name": "InvestBit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10962249",
+		"_collection_link": "https://speeding-comet-129197.postman.co/workspace/businessIntegrator~3b7b96e6-c183-4871-8f27-8a3d463ce420/collection/10962249-7479767e-9ad3-4b19-9c39-6fcb15ccbd67?action=share&source=collection_link&creator=10962249"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login (no auth)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jefferson@teste.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/_login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User (no auth)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name_full\": \"pedro soares\",\r\n    \"email\": \"pedro@soares.com\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/_register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deposit",
+			"item": [
+				{
+					"name": "New Deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value_brl\" : \"10.000,60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/_deposit/new",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_deposit",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Details deposit by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/_deposit/bd939c13-f8b2-4c59-82be-332afd475b0e/details",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_deposit",
+								"bd939c13-f8b2-4c59-82be-332afd475b0e",
+								"details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Get Balance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/_wallet/balance",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cotation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/_wallet/btc/cotation",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"btc",
+								"cotation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions per day",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/_wallet/transactions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Extract",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/_wallet/extract",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"extract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Purchase BTC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value_brl\": \"50,10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/_wallet/btc/purchase",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"btc",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sell BTC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value_btc\": \"0.00004000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/_wallet/btc/sell",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"_wallet",
+								"btc",
+								"sell"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:3333",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJwZWRyb0Bzb2FyZXMuY29tIiwiaWF0IjoxNzAzNDE3NjEyLCJleHAiOjE3MDM1MDQwMTJ9.ul9lxiq3O-s3CSQsonm1QeekZvDWH4SDENn7OAHhpS8",
+			"type": "string"
+		}
+	]
+}

@@ -49,7 +49,7 @@ yarn dev (execute a aplicação "sem docker")
 <p>Não esqueça de ter configurado o docker em sua máquina ;)</p>
 
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 <p>Com os containers no AR, execute:</p>
