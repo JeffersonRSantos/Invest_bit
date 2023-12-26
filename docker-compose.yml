@@ -37,6 +37,7 @@ services:
       - MAIL_DOMAIN=sandbox198e190b7c5d4bd89b04eb2aeba115b8.mailgun.org
       - RABBITMQ_HOST=amqp://admin:admin@rabbitmq:5672
       - REDIS_HOST=redis://redis
+      - EXPIRES_IN=20
     ports:
       - 3333:3333
     volumes:
