@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+  mysql:
+    container_name: mysql_container
+    image: mysql:5.7.41-debian
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=invest_bit
+      - MYSQL_ROOT_USER=root
+      - TZ=America/Sao_Paulo
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+
+  app:
+    depends_on:
+      - mysql
+      - rabbitmq
+      - redis
+    restart: always
+    container_name: 'application_container'
+    build: .
+    command: yarn start
+    environment:
+      - SECRET_KEY=9190e275f8dd1965da6071cd387084c406cea375039340f2dd82e20ddaa3da75
+      - DB_HOST=mysql
+      - DB_NAME=invest_bit
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_PORT=3306
+      - MAIL_FROM=jeffersonfullstackweb@gmail.com
+      - MAIL_KEY=d9d3e568298309b6d058b664b58d743a-5e3f36f5-88473d23
+      - MAIL_DOMAIN=sandbox198e190b7c5d4bd89b04eb2aeba115b8.mailgun.org
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq:5672
+      - REDIS_HOST=redis://redis
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - mysql:mysql
+      - rabbitmq:rabbitmq
+      - redis:redis
+      
+  rabbitmq:
+    image: "rabbitmq:3.8-management-alpine"
+    container_name: rabbitmq_container
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - "./.rabbitmq_data:/var/lib/rabbitmq/mnesia"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+  redis:
+    image: redis
+    container_name: redis_container
+    command: redis-server
+    ports:
+      - 6379:6379
